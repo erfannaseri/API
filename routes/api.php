@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,11 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::group(['prefix' => '/v1'],function (){
+    Route::apiresource('/products','ProductController');
+});
+
+Route::group(['prefix' => 'v1/products'],function (){
+   Route::apiresource('/{product}/review','ReviewController');
 });
