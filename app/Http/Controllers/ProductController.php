@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Product\ProductResource;
 use App\Model\product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return Product::all();
     }
 
     /**
@@ -42,11 +43,13 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Model\product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(product $product)
     {
-        //
+        //return $product;
+        $result= new ProductResource($product);
+        return response()->json($result,200);
     }
 
     /**
