@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReviewResource;
+use App\Model\Product;
 use App\Model\Review;
 use Illuminate\Http\Request;
 
@@ -10,11 +12,13 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Product $product)
     {
-        //
+        $reviews=$product->reviews;
+        return ReviewResource::collection($reviews);
     }
 
     /**
@@ -41,10 +45,11 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Review  $review
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @param \App\Model\Review $review
+     * @return void
      */
-    public function show(Review $review)
+    public function show(Product $product,Review $review)
     {
         //
     }
