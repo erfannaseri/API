@@ -18,14 +18,14 @@ class ProductResource extends JsonResource
             'کد'=>$this->id,
             'نام'=>$this->name,
             'توصیفات'=>$this->detail,
-            'تعداد موجود'=>$this->stock==0?'با عرض پوزش موجودی صفر میباشد':$this->stock,
+            'تعداد موجود'=>$this->stock > 0?$this->stock : 'با عرض پوزش موجودی صفر میباشد',
             'قیمت اصلی'=>$this->price,
             'تخفیف'=>$this->discount,
             'قیمت با تخفیف'=>round((1-$this->discount/100)*$this->price,2),
             'امتیاز محصول'=>$this->reviews->count()>0 ?
                 round($this->reviews->sum('star')/$this->reviews->count('star'),1):'امتیازی داده نشده است ',
             'href'=>[
-                'reviews'=>route('review.index',$this->id)
+                'reviews'=>route('review.index',$this->id),
             ]
         ];
     }
