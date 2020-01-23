@@ -20,7 +20,7 @@ class ProductResource extends JsonResource
             'توصیفات'=>$this->detail,
             'تعداد موجود'=>$this->stock > 0?$this->stock : 'با عرض پوزش موجودی صفر میباشد',
             'قیمت اصلی'=>$this->price,
-            'تخفیف'=>$this->discount,
+            'تخفیف'=>$this->discount.'درصد ',
             'قیمت با تخفیف'=>round((1-$this->discount/100)*$this->price,2),
             'امتیاز محصول'=>$this->reviews->count()>0 ?
                 round($this->reviews->sum('star')/$this->reviews->count('star'),1):'امتیازی داده نشده است ',

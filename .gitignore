@@ -11,5 +11,8 @@ npm-debug.log
 yarn-error.log
 .phpstorm.meta.php
 _ide_helper.php
+<<<<<<< HEAD
 .gitignore
+=======
+>>>>>>> cff38ba8af70002f4a898793926bd2077a4405bf
 .idea

@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Model\product;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only('store','destroy','update');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,11 +43,23 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $product=Product::create([
+            'name'=>$request->input('name'),
+            'detail'=>$request->input('detail'),
+            'price'=>$request->input('price'),
+            'stock'=>$request->input('stock'),
+            'discount'=>$request->input('discount'),
+        ]);
+        if ($product)
+        {
+            return response()->json(['data'=>$product],Response::HTTP_CREATED);
+        }
+        return  response()->json(['error'=>'ثبت محصول انجام نشد'],Response::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -50,32 +70,27 @@ class ProductController extends Controller
      */
     public function show(product $product)
     {
-        //return $product;
+
         $result= new ProductResource($product);
         return response()->json($result,200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(product $product)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Model\product  $product
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function update(Request $request, product $product)
+    public function update(UpdateProductRequest $request, product $product)
     {
-        //
+      $result=$product->update($request->all());
+        if ($result) {
+            return response()->json(['نتیجه'=>'بروز رسانی محصول مورد نظر با موفقیت انجام شد','data'=>new ProductResource($product)],Response::HTTP_OK);
+        }
+        return response()->json(['error'=>'بروز رسانی با مشکل روبرو گردید'],Response::HTTP_BAD_REQUEST);
     }
 
     /**

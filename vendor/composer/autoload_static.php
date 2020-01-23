@@ -580,6 +580,7 @@ class ComposerStaticInit795ea5fed68ba1172a8373da23501dae
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Api\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -597,6 +598,8 @@ class ComposerStaticInit795ea5fed68ba1172a8373da23501dae
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\CreateProductRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CreateProductRequest.php',
+        'App\\Http\\Requests\\UpdateProductRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateProductRequest.php',
         'App\\Http\\Resources\\Product\\ProductCollection' => __DIR__ . '/../..' . '/app/Http/Resources/Product/ProductCollection.php',
         'App\\Http\\Resources\\Product\\ProductResource' => __DIR__ . '/../..' . '/app/Http/Resources/Product/ProductResource.php',
         'App\\Http\\Resources\\ReviewResource' => __DIR__ . '/../..' . '/app/Http/Resources/ReviewResource.php',
