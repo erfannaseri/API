@@ -101,6 +101,8 @@ class ProductController extends Controller
      */
     public function destroy(product $product)
     {
-        //
+        $product->delete();
+
+        return  response()->json(['محصول مورد نظر حذف شد'],Response::HTTP_NO_CONTENT);
     }
 }
