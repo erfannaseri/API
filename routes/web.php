@@ -11,6 +11,12 @@
 |
 */
 
+use App\Jobs\FirstJob;
+
+use App\User;
+
 Route::get('/', function () {
-    return view('welcome');
+    $user=User::find(1);
+    $token=Str::random(60);
+dispatch(new FirstJob($user,$token));
 });
